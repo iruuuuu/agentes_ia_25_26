@@ -38,4 +38,4 @@ else
 	echo "No tienes instalado CURL"
 	exit 1
 fi
-
+{}
