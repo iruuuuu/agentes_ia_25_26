@@ -1,28 +1,41 @@
 #!/bin/bash
-# @autor: Irene Ming Jimenenez Hinojosa
+# @autor: Isaías FL
 # @comment:
-# @description : crear un script  utilizando el comando -v que verifique si tengo instalado o no los paquetes git , node , npm , curl   npm  si dicho de algunos de los paqutes no estan en el sistema mostraremos sistema de errores
+# @description:  Script que valida si tenemos instalados: git, node, npm, curl
 
-echo "Verificando los requisitos previstos"
+clear
+echo "Verificando los quisitos previos"
 
-
-
-
-if command -v node > /dev/null 2>&1 
-	NODE_VERSION=$(node --version)
-	echo "node instalado; version: ¬$NODE_VERSION"
+if command -v node >/dev/null 2>&1; then
+  NODE_VERSION=$(node --version)
+  echo "😁 Node instalado correctamente; versión: $NODE_VERSION"
 else
-echo"no tienes instalado NodeJS
-exit 1
+  echo -e "💩 No tienes instalado NodeJS\n"
+  exit 1
 fi
 
-if command -v git; then
-	GIT_VERSION=$(git --version)
-	echo "instalado correctamente, version:$GIT_VERSION
+if command -v git >/dev/null 2>&1; then
+  GIT_VERSION=$(git --version)
+  echo "😁  instalado correctamente; versión: $GIT_VERSION"
 else
-	echo "No tienes instalado git"
-	exit 1
+  echo "💩 No tienes instalado git"
+  exit 1
 fi
 
-if command -v; then
+if command -v npm >/dev/null 2>&1; then
+  NPM_VERSION=$(npm --version)
+  echo "😁  instalado correctamente npm; versión: $NPM_VERSION"
+else
+  echo "💩 No tienes instalado NPM"
+  exit 1
+fi
 
+if command -v curl >/dev/null 2>&1; then
+  CURL_VERSION=$(curl --version)
+  echo "😁  instalado correctamente npm; "
+else
+  echo "💩 No tienes instalado CURL"
+  exit 1
+fi
+
+echo "🎉 Todos los paquetes instalados correctamente"
