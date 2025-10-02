@@ -1,0 +1,31 @@
+//Probar las APIS
+
+
+
+### ---- variables ---
+//si dice 0 references es la cantidad de veces que estan siendo utilizadas
+@baseURL=https://jsonplaceholder.typicode.com
+
+@Content-Type= application/json
+
+
+###-------
+###     GET
+####--------
+
+
+//  ESTRUCTURA  GET URL/ENDPOINT PROTOCOLO
+//lanzar peticion
+GET {{baseURL}}/posts HTTP/1.1
+
+//crear un post y capturar la respuesta:
+
+POST {{baseURL}}/posts HTTP/1.1
+Content-Type : {{Content-Type}}
+
+
+{
+    "title" : "Titulo del POST de ejemplo",
+    "body" : "Contenido",
+    "userId": 1
+}
