@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lanzar-json-server": "json-server --watch data/db.json"
+    "lanzar-json-server": "json-server --watch data/db.json",
+    "start": "json-server --watch config/data/db.json --port 3000",
+    "peticiones": "bash scripts/peticiones_http.sh"
   },
   "keywords": [],
   "author": "",
