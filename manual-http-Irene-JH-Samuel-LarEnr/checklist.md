@@ -4,7 +4,7 @@
 - [x] 1.1 Crear carpeta `manual-http-[tu-nombre-iniciales-apellidos]`  **Irene**
 - [x] 1.1 Inicializar proyecto con `npm init` **Irene**
 - [x] 1.1 Completar datos en `package.json` (nombre, versión, descripción, autor) **Samuel**
-- [x] 1.2 Instalar dependencias: `json-server` y `dotenv` **Irene**
+- [x] 1.2 Instalar dependencias: `json-server` y `dotenv` **Irene||Samuel**
 - [x] 1.3 Configurar `package.json` con `"type": "module"` **Samuel**
 - [x] 1.3 Añadir scripts: **Samuel||Irene**
   - [x] `server:up`
@@ -14,14 +14,14 @@
 - [x] 1.5 Crear archivo `.env` **Samuel||Irene**
 - [x] 1.5 Crear archivo `.env.example` **Samuel||Irene**
 - [x] 1.5 Crear `.gitignore` **Irene**
-- [ ] 1.6 Crear `src/db/db.json` con datos de students, courses y enrollments
+- [x] 1.6 Crear `src/db/db.json` con datos de students, courses y enrollments **Samuel||Irene**
 
 ---
 
 ## 💻 Parte 2: Script CRUD con funciones JavaScript
-- [x] 2.1 Crear `src/crud-curl.js` e importar dotenv
-- [ ] 2.1 Cargar variables `PORT` y `API_BASE_URL`
-- [ ] 2.1 Construir `BASE_URL`
+- [x] 2.1 Crear `src/crud-curl.js` e importar dotenv **Irene**
+- [x] 2.1 Cargar variables `PORT` y `API_BASE_URL` **Irene**
+- [x] 2.1 Construir `BASE_URL` **Irene**
 - [ ] 2.2 Implementar funciones:
   - [ ] `createStudent(studentData)`
   - [ ] `readAllStudents()`
@@ -92,7 +92,7 @@
 ---
 
 ## 📋 Parte 7: Checklist de progreso
-- [ ] 7.1 Crear archivo `checklist.md` (este archivo)
+- [x] 7.1 Crear archivo `checklist.md` (este archivo) **Samuel**
 
 ---
 
