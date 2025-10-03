@@ -19,7 +19,7 @@
 ---
 
 ## 💻 Parte 2: Script CRUD con funciones JavaScript
-- [ ] 2.1 Crear `src/crud-curl.js` e importar dotenv
+- [x] 2.1 Crear `src/crud-curl.js` e importar dotenv
 - [ ] 2.1 Cargar variables `PORT` y `API_BASE_URL`
 - [ ] 2.1 Construir `BASE_URL`
 - [ ] 2.2 Implementar funciones:
