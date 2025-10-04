@@ -50,8 +50,8 @@
 ---
 
 ## ⚡ Parte 4: Thunder Client
-- [ ] 4.1 Crear colección "CRUD Students API"
-- [ ] 4.1 Configurar entorno de variables
+- [ ] 4.1 Crear colección "CRUD Students API" **no se pudede hace solo version de pago, se pondrá manualmente-Samuel**
+- [ ] 4.1 Configurar entorno de variables **no se pudede hace solo version de pago, se pondrá manualmente-Samuel**
 - [ ] 4.2 Crear peticiones:
   - [ ] CREATE Student
   - [ ] GET All Students
