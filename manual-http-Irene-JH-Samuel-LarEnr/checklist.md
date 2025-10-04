@@ -22,15 +22,15 @@
 - [x] 2.1 Crear `src/crud-curl.js` e importar dotenv **Irene**
 - [x] 2.1 Cargar variables `PORT` y `API_BASE_URL` **Irene**
 - [x] 2.1 Construir `BASE_URL` **Irene**
-- [ ] 2.2 Implementar funciones:
-  - [ ] `createStudent(studentData)`
-  - [ ] `readAllStudents()`
-  - [ ] `readStudentById(id)`
-  - [ ] `updateStudent(id, studentData)`
-  - [ ] `patchStudent(id, partialData)`
-  - [ ] `deleteStudent(id)`
-- [ ] 2.3 Ejecutar funciones en orden con ejemplos
-- [ ] 2.3 Añadir mensajes informativos al output
+- [x] 2.2 Implementar funciones:
+  - [x] `createStudent(studentData)`
+  - [x] `readAllStudents()`
+  - [x] `readStudentById(id)`
+  - [x] `updateStudent(id, studentData)`
+  - [x] `patchStudent(id, partialData)`
+  - [x] `deleteStudent(id)`
+- [] 2.3 Ejecutar funciones en orden con ejemplos
+- [] 2.3 Añadir mensajes informativos al output
 
 ---
 
