@@ -75,3 +75,51 @@ const deleteStudent = (id) => {
     const command = `curl -X DELETE ${url}`;
     console.log(`\n### 6. DELETE (DELETE) ###\n${command}`);
 };
+
+
+// ================================== PASO 2.3 - EJECUCIÓN DEL SCRIPT ==========================
+// Para ejecutarlo --> node src/crud-curl.js
+
+console.log('====================================================');
+console.log('GENERACIÓN DE COMANDOS cURL PARA OPERACIONES CRUD');
+console.log('====================================================');
+
+// --- Datos de Ejemplo (Correctos para tu db.json) ---
+// Usaremos el ID 8 (Samuel Fernandez) para las operaciones de modificacion.
+const STUDENT_ID_TO_OPERATE = 8; 
+
+// Datos para la operación CREATE (POST)
+const dataNewStudent = {
+    name: "Thomas Anderson",
+    email: "neo@matrix.com",
+    enrollmentDate: "2025-01-20",
+    active: true,
+    level: "advanced"
+};
+
+// Datos para la operación UPDATE COMPLETO (PUT)
+const dataUpdatedStudent = {
+    id: 8, 
+    name: "Samuel F. Enríquez [ACTUALIZADO]", // Campo modificado
+    email: "samuel.fernan@email.com",
+    enrollmentDate: "2025-11-02",
+    active: true, // Campo modificado
+    level: "advanced"
+};
+
+// Datos para la operación UPDATE PARCIAL (PATCH)
+const dataPartialUpdate = {
+    level: "beginner" // Solo envía el campo a modificar
+};
+
+// --- Ejecución de las Funciones en Orden ---
+createStudent(dataNewStudent);
+readAllStudents();
+readStudentById(STUDENT_ID_TO_OPERATE);
+updateStudent(STUDENT_ID_TO_OPERATE, dataUpdatedStudent);
+patchStudent(STUDENT_ID_TO_OPERATE, dataPartialUpdate);
+deleteStudent(STUDENT_ID_TO_OPERATE);
+
+console.log('\n====================================================');
+console.log('FINALIZADO. Copia y ejecuta los comandos en tu terminal.');
+console.log('====================================================\n');

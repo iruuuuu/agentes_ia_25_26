@@ -29,8 +29,8 @@
   - [x] `updateStudent(id, studentData)`
   - [x] `patchStudent(id, partialData)`
   - [x] `deleteStudent(id)`
-- [] 2.3 Ejecutar funciones en orden con ejemplos
-- [] 2.3 Añadir mensajes informativos al output
+- [x] 2.3 Ejecutar funciones en orden con ejemplos
+- [x] 2.3 Añadir mensajes informativos al output
 
 ---
 
