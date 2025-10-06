@@ -55,14 +55,6 @@
       "enrollmentDate": "2024-09-05",
       "active": false,
       "level": "intermediate"
-    },
-    {
-      "id": 8,
-      "name": "Samuel Fernandez Enríquez",
-      "email": "samuel.fernan@email.com",
-      "enrollmentDate": "2025-11-02",
-      "active": false,
-      "level": "advanced"
     }
   ],
   "courses": [
