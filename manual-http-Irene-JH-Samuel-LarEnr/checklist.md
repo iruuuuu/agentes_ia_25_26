@@ -22,15 +22,15 @@
 - [x] 2.1 Crear `src/crud-curl.js` e importar dotenv **Irene**
 - [x] 2.1 Cargar variables `PORT` y `API_BASE_URL` **Irene**
 - [x] 2.1 Construir `BASE_URL` **Irene**
-- [x] 2.2 Implementar funciones:
-  - [x] `createStudent(studentData)`
-  - [x] `readAllStudents()`
-  - [x] `readStudentById(id)`
-  - [x] `updateStudent(id, studentData)`
-  - [x] `patchStudent(id, partialData)`
-  - [x] `deleteStudent(id)`
-- [x] 2.3 Ejecutar funciones en orden con ejemplos
-- [x] 2.3 Añadir mensajes informativos al output
+- 2.2 Implementar funciones: 
+  - [x] `createStudent(studentData)` **Irene**
+  - [x] `readAllStudents()` **Irene**
+  - [x] `readStudentById(id)` **Irene**
+  - [x] `updateStudent(id, studentData)` **Irene**
+  - [x] `patchStudent(id, partialData)` **Irene**
+  - [x] `deleteStudent(id)` **Irene**
+- [x] 2.3 Ejecutar funciones en orden con ejemplos **Irene**
+- [x] 2.3 Añadir mensajes informativos al output **Irene**
 
 ---
 
@@ -50,17 +50,17 @@
 ---
 
 ## ⚡ Parte 4: Thunder Client
-- [ ] 4.1 Crear colección "CRUD Students API" **no se pudede hace solo version de pago, se pondrá manualmente-Samuel**
-- [ ] 4.1 Configurar entorno de variables **no se pudede hace solo version de pago, se pondrá manualmente-Samuel**
-- [ ] 4.2 Crear peticiones:
-  - [ ] CREATE Student
-  - [ ] GET All Students
-  - [ ] GET Student by ID
-  - [ ] UPDATE Student
-  - [ ] PATCH Student
-  - [ ] DELETE Student
-- [ ] 4.3 Guardar capturas en carpeta `images/`
-- [ ] 4.4 Documentar en README con capturas y explicación
+- [x] 4.1 Crear colección "CRUD Students API" **no se pudede hace solo version de pago, se pondrá manualmente -Samuel**
+- [x] 4.1 Configurar entorno de variables **no se pudede hace solo version de pago, se pondrá manualmente -Samuel**
+- 4.2 Crear peticiones: 
+  - [x] CREATE Student **Samuel**
+  - [x] GET All Students **Samuel**
+  - [x] GET Student by ID **Samuel**
+  - [x] UPDATE Student **Samuel**
+  - [x] PATCH Student **Samuel**
+  - [x] DELETE Student **Samuel**
+- [x] 4.3 Guardar capturas en carpeta `images/` **Samuel**
+- [x] 4.4 Documentar en README con capturas y explicación **Samuel**
 
 ---
 
@@ -97,16 +97,16 @@
 ---
 
 ## 🌿 Parte 8: Git y GitHub
-- [ ] 8.1 Crear repositorio en GitHub `manual-http-[tu-nombre]`
-- [ ] 8.1 Añadir profesor como colaborador
-- [ ] 8.2 Inicializar Git en local y conectar remoto
-- [ ] 8.2 Crear rama `main`
-- [ ] 8.2 Subir código inicial
-- [ ] 8.3 Crear rama `m1/http-request-response`
-- [ ] 8.3 Trabajar en esa rama
+- [x] 8.1 Crear repositorio en GitHub `manual-http-[tu-nombre]`
+- [x] 8.1 Añadir profesor como colaborador
+- [x] 8.2 Inicializar Git en local y conectar remoto
+- [x] 8.2 Crear rama `main`
+- [x] 8.2 Subir código inicial
+- [x] 8.3 Crear rama `m1/http-request-response`
+- [x] 8.3 Trabajar en esa rama
 - [ ] 8.4 Realizar commits incrementales con mensajes claros
-- [ ] 8.5 Crear Pull Request hacia `main`
-- [ ] 8.5 Asignar profesor como reviewer
+- [x] 8.5 Crear Pull Request hacia `main`
+- [x] 8.5 Asignar profesor como reviewer
 - [ ] 8.6 Hacer merge tras aprobación
 - [ ] 8.6 Crear y subir tag `M1/http-request-response`
 

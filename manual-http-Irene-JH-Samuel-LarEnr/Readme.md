@@ -1,8 +1,8 @@
 
-
+---
 # 🌩️ Thunder Client
 
-## 4.01 Como usar Thunder client 👀
+##  Como usar Thunder client 👀
 
 -`Instala la extensión de thunder client en code`
 -`Abre thunder Client, pulsando su icono o pulsando ctrl+shift+R`
@@ -33,53 +33,60 @@
 
 ## 4.2 Peticiones
 
-Crear las siguientes peticiones en Thunder Client:
-
 ➕ **CREATE Student (POST)**  
-`Realizamos un post, para crear un nuevo estudiante, lo enviaremos como json , y veremos lo que reciviremos`
-📸 Captura: ![create_student](./images/Post_Headers_TC.png)
-📸 Captura: ![create_student_body](./images/Post_Body_TC.png)
-📸 Captura: ![create_student_response](./images/Post_Response_TC.png)
-📸 Captura: ![create_student_response_Headers](./images/Post_Response_Header_TC.png)
-📸 Captura: ![create_student_response_BD](./images/Post_BD_TC.png)
+Realizamos un **POST**, para crear un nuevo estudiante, lo enviaremos como **json** , y veremos lo que reciviremos.
+Captura sobre el header del post: ![create_student](./images/Post_Headers_TC.png)
+Captura sobre el body del post: ![create_student_body](./images/Post_Body_TC.png)
+Captura sobre la respuesta del post: ![create_student_response](./images/Post_Response_TC.png)
+Captura sobre el header de la respuesta del post: ![create_student_response_Headers](./images/Post_Response_Header_TC.png)
+Captura sobre el cambio en la base de datos debido al post: ![create_student_response_BD](./images/Post_BD_TC.png)
+
+---
+**¿content-Type application/json?**  
+
+Es el tipo de datos que vamos a enviar en el cuerpo (**body**) de la petición.
 
 
+📋 **GET All Students (GET)**
+Hacemos un **GET** (un select) de todos los estudiantes simplemente poniendo la **URL:** ***http://localhost:4000/students/***.   
 
-📋 **GET All Students (GET)**  
-📸 Captura: ![get_all_students](./images/get_all_students.png)
+Captura del resultado y header del get sobre todos los students: ![get_all_students](./images/Get_Headers&&Result_TC.png)
+Captura de el header de la respuesta: ![get_all_students_header](./images/Get_Response_Header_TC.png)
 
-🔍 **GET Student by ID (GET)**  
-📸 Captura: ![get_student_by_id](./images/get_student_by_id.png)
+🔍 **GET Student by ID (GET)**
+Hacemos un **GET**  de un  estudiante por **ID**  poniendo la **URL:** ***http://localhost:4000/students/(id)*** en este caso 8   
+
+Captura de el header y la respuesta del resultado al get por id: ![get_student_by_id](./images/GetID_Headers&&Result_TC.png)
+Captura del header del resultado: ![get_student_by_id_header](./images/GetID_Response_Header_TC.png)
 
 🔄 **UPDATE Student (PUT)**  
-📸 Captura: ![update_student](./images/update_student.png)
+Hacemos un **PUT** (una actualización/update)  de un  estudiante  poniendo la **URL:** ***http://localhost:4000/students/(id)*** en este caso 8.   
+
+Captura del body y el resultado: ![update_student_dody_result](./images/PUT_Body&&Result_TC.png)
+Captura de los headers de ambos: ![update_student_headers](./images/PUT_Headers_TC.png)
+Captura del cambio realizado en la base de datos: ![update_student_changes](./images/PUT_BD_TC.png)
+
+---
+**Diferencia entre PATCH y PUT**
+**PUT** cambia todo el recurso en este caso el estudiante, En cambio **PATCH** cambia solo los campos enviados.
+
+---
 
 ✏ **PATCH Student (PATCH)**  
-📸 Captura: ![patch_student](./images/patch_student.png)
+Hacemos un **Patch** (un "parche")  de un  estudiante  poniendo la **URL:** ***http://localhost:4000/students/(id)*** en este caso 8 y cambiando el solo el email.   
 
-🗑 **DELETE Student (DELETE)**  
-📸 Captura: ![delete_student](./images/delete_student.png)
+Captura del body y resultado del patch: ![patch_student_body_result](./images/Patch_Body&&Result_TC.png)
+Captura de los headers tanto del patch como del resultado: ![patch_student_headers](./images/Patch_Headers_TC.png)
+Captura del cambio en la base de datos: ![patch_student_bd](./images/Patch_BD_TC.png)
 
----
 
-## 4.3 📸 Capturas de pantalla
 
-Realizar captura de pantalla de cada petición.  
-Cada captura debe mostrar:
+🗑 **DELETE Student (DELETE)** 
+Hacemos un **DELETE** (un "borrado")  de un  estudiante  poniendo la **URL:** ***http://localhost:4000/students/(id)*** en este caso 8  
 
-- 📤 Request completo (método, URL, headers, body si aplica)  
-- 📥 Response completo (status, headers, body)  
-
-💾 Guardar capturas en carpeta `images/` con nombres descriptivos.
+Captura del header y resultado del delete: ![delete_student_header_result](./images/Del_Headers&&Result_TC.png)
+Captura del header del resultado del delete: ![delete_student_header_response](./images/Get_Response_Header_TC.png)
+Captura de el cambio realizado en la base de datos (borrar usuario id 8): ![delete_student_bd](./images/Del_DB_TC.png)
 
 ---
-
-## 4.4 📝 Documentación
-
-Explicar en este README cómo usar Thunder Client.  
-Incluir las capturas con descripción de cada operación.
-
----
-
-### 📂 Estructura recomendada de imágenes
 
