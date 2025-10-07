@@ -21,7 +21,8 @@ const BASE_URL = `${API_BASE_URL}:${PORT}/${COLLECTION_NAME}`;
  */
 const createStudent = (studentData) => {
     // Convierte y envuelve en comillas simples en una sola línea.
-    const command = `curl -X POST -H "Content-Type: application/json" -d '${JSON.stringify(studentData)}' ${BASE_URL}`;
+    const command = `curl -X POST -H "Content-Type: application/json" 
+    -d '${JSON.stringify(studentData)}' ${BASE_URL}`;
     console.log(`\n### 1. CREATE (POST) ###\n${command}`);
 };
 
@@ -51,7 +52,9 @@ const readStudentById = (id) => {
 const updateStudent = (id, studentData) => {
     const url = `${BASE_URL}/${id}`;
     // Convierte y envuelve en comillas simples en una sola línea.
-    const command = `curl -X PUT -H "Content-Type: application/json" -d '${JSON.stringify(studentData)}' ${url}`;
+    const command = `curl -X PUT 
+    -H "Content-Type: application/json" 
+    -d '${JSON.stringify(studentData)}' ${url}`;
     console.log(`\n### 4. UPDATE COMPLETO (PUT) ###\n${command}`);
 };
 
@@ -62,7 +65,10 @@ const updateStudent = (id, studentData) => {
 const patchStudent = (id, partialData) => {
     const url = `${BASE_URL}/${id}`;
     // Convierte y envuelve en comillas simples en una sola línea.
-    const command = `curl -X PATCH -H "Content-Type: application/json" -d '${JSON.stringify(partialData)}' ${url}`;
+    const command = `curl -X PATCH 
+    -H "Content-Type: application/json" 
+    -d '${JSON.stringify(partialData)}' ${url}`;
+
     console.log(`\n### 5. UPDATE PARCIAL (PATCH) ###\n${command}`);
 };
 

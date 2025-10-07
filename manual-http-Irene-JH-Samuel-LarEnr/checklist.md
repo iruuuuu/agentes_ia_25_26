@@ -35,17 +35,17 @@
 ---
 
 ## 📚 Parte 3: Documentación CRUD con cURL
-- [ ] 3.1 Documentar cada operación CRUD en `README.md`:
-  - [ ] CREATE
-  - [ ] READ ALL
-  - [ ] READ BY ID
-  - [ ] UPDATE
-  - [ ] PATCH
-  - [ ] DELETE
-- [ ] 3.1 Explicar flags y métodos HTTP
-- [ ] 3.1 Incluir respuestas reales con código de estado HTTP
-- [ ] 3.2 Probar comandos cURL reales
-- [ ] 3.2 Documentar las respuestas en el README
+- [x] 3.1 Documentar cada operación CRUD en `README.md`:
+  - [x] CREATE
+  - [x] READ ALL
+  - [x] READ BY ID
+  - [x] UPDATE
+  - [x] PATCH
+  - [x] DELETE
+- [x] 3.1 Explicar flags y métodos HTTP
+- [x] 3.1 Incluir respuestas reales con código de estado HTTP
+- [x] 3.2 Probar comandos cURL reales
+- [x] 3.2 Documentar las respuestas en el README
 
 ---
 
