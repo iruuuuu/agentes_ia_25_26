@@ -6,9 +6,12 @@ dotenv.config();
 
 
 // Carga las variables de entorno o usa valores por defecto (ej. 4000)
-const PORT = process.env.PORT || 4000;
+const PORT=3000;
 const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost';
 const COLLECTION_NAME = 'students';
+
+
+
 
 // URL base completa para la colección de estudiantes (ej. http://localhost:4000/students)
 const BASE_URL = `${API_BASE_URL}:${PORT}/${COLLECTION_NAME}`;
