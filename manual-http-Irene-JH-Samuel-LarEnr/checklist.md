@@ -81,10 +81,10 @@
 ---
 
 ## ✅ Parte 6: Script de validación
-- [ ] 6.1 Crear `scripts/validate.sh`
-- [ ] 6.1 Validar existencia de archivos requeridos
+- [x] 6.1 Crear `scripts/validate.sh` **Irene**
+- [x] 6.1 Validar existencia de archivos requeridos **Irene**
 - [ ] 6.1 Validar configuraciones en `package.json`
-- [ ] 6.1 Validar al menos 6 capturas en `images/`
+- [x] 6.1 Validar al menos 6 capturas en `images/` **Irene**
 - [ ] 6.1 Mostrar mensaje de éxito o fallo
 - [ ] 6.2 Dar permisos de ejecución al script
 - [ ] 6.2 Probar el script en terminal
