@@ -35,17 +35,17 @@
 ---
 
 ## 📚 Parte 3: Documentación CRUD con cURL
-- [x] 3.1 Documentar cada operación CRUD en `README.md`:
-  - [x] CREATE
-  - [x] READ ALL
-  - [x] READ BY ID
-  - [x] UPDATE
-  - [x] PATCH
-  - [x] DELETE
-- [x] 3.1 Explicar flags y métodos HTTP
-- [x] 3.1 Incluir respuestas reales con código de estado HTTP
-- [x] 3.2 Probar comandos cURL reales
-- [x] 3.2 Documentar las respuestas en el README
+- [x] 3.1 Documentar cada operación CRUD en `README.md`: **Irene**
+  - [x] CREATE  **Irene**
+  - [x] READ ALL  **Irene**
+  - [x] READ BY ID  **Irene**
+  - [x] UPDATE  **Irene**
+  - [x] PATCH **Irene**
+  - [x] DELETE  **Irene**
+- [x] 3.1 Explicar flags y métodos HTTP **Irene**
+- [x] 3.1 Incluir respuestas reales con código de estado HTTP **Irene**
+- [x] 3.2 Probar comandos cURL reales **Irene**
+- [x] 3.2 Documentar las respuestas en el README  **Irene**
 
 ---
 
@@ -65,18 +65,18 @@
 ---
 
 ## 📝 Parte 5: REST Client
-- [ ] 5.1 Crear archivo `peticiones-crud.http`
-- [ ] 5.1 Definir variables (@baseUrl, @port, @apiUrl)
-- [ ] 5.2 Implementar operaciones CRUD:
-  - [ ] CREATE Student
-  - [ ] READ All Students
-  - [ ] READ Student by ID
-  - [ ] READ Filtrar estudiantes activos
-  - [ ] READ Filtrar por nivel
-  - [ ] UPDATE Student
-  - [ ] PATCH Student
-  - [ ] DELETE Student
-- [ ] 5.3 Probar todas las peticiones en VS Code
+- [x] 5.1 Crear archivo `peticiones-crud.http` **Irene**
+- [x] 5.1 Definir variables (@baseUrl, @port, @apiUrl)  **Samuel**
+- [x] 5.2 Implementar operaciones CRUD: **Samuel**
+  - [x] CREATE Student  **Samuel**
+  - [x] READ All Students **Samuel**
+  - [x] READ Student by ID  **Samuel**
+  - [x] READ Filtrar estudiantes activos  **Samuel**
+  - [x] READ Filtrar por nivel  **Samuel**
+  - [x] UPDATE Student  **Samuel**
+  - [x] PATCH Student **Samuel**
+  - [x] DELETE Student  **Samuel**
+  - [x] 5.3 Probar todas las peticiones en VS Code  **Samuel**
 
 ---
 
@@ -97,13 +97,13 @@
 ---
 
 ## 🌿 Parte 8: Git y GitHub
-- [x] 8.1 Crear repositorio en GitHub `manual-http-[tu-nombre]`
-- [x] 8.1 Añadir profesor como colaborador
-- [x] 8.2 Inicializar Git en local y conectar remoto
-- [x] 8.2 Crear rama `main`
-- [x] 8.2 Subir código inicial
-- [x] 8.3 Crear rama `m1/http-request-response`
-- [x] 8.3 Trabajar en esa rama
+- [x] 8.1 Crear repositorio en GitHub `manual-http-[tu-nombre]`**Irene**
+- [x] 8.1 Añadir profesor como colaborador  **Irene**
+- [x] 8.2 Inicializar Git en local y conectar remoto  **Irene**
+- [x] 8.2 Crear rama `main` **Irene**
+- [x] 8.2 Subir código inicial  **Irene** || **Samuel**
+- [x] 8.3 Crear rama `m1/http-request-response`**Irene**
+- [x] 8.3 Trabajar en esa rama **Irene** || **Samuel**
 - [ ] 8.4 Realizar commits incrementales con mensajes claros
 - [x] 8.5 Crear Pull Request hacia `main`
 - [x] 8.5 Asignar profesor como reviewer
@@ -112,11 +112,11 @@
 
 ---
 ✅ **Progreso general:**  
-- [ ] Parte 1 completada  
-- [ ] Parte 2 completada  
-- [ ] Parte 3 completada  
-- [ ] Parte 4 completada  
-- [ ] Parte 5 completada  
+- [x] Parte 1 completada  
+- [x] Parte 2 completada  
+- [x] Parte 3 completada  
+- [x] Parte 4 completada  
+- [x] Parte 5 completada  
 - [ ] Parte 6 completada  
 - [ ] Parte 7 completada  
 - [ ] Parte 8 completada  
