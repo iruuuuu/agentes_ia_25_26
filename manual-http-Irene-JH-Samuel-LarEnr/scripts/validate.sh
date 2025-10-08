@@ -23,8 +23,22 @@ fail() {
 [ -d images ] || fail "Falta carpeta images/"
 [ -d scripts ] || fail "Falta carpeta scripts/"
 
+# 2️ Validar contenido de package.json
+# -q  hace que grep no muestre ninguna salida por pantalla.Solo sirve para indicar si encontró (o no) la coincidencia.
+
+grep -q '"type": *"module"' package.json || fail 'Falta "type": "module" en package.json'
+grep -q '"dotenv"' package.json || fail "dotenv no está instalado en package.json"
+grep -q '"json-server"' package.json || fail "json-server no está instalado en package.json"
+grep -q '"server:up"' package.json || fail 'Falta script "server:up" en package.json'
+grep -q '"crud:curl"' package.json || fail 'Falta script "crud:curl" en package.json'
 
 
-# 3. Validar capturas en images/
-CAPTURAS=$(find images/ -type f -name "*.png" | wc -l)
-[ "$CAPTURAS" -ge 6 ] || fail "Se requieren al menos 6 capturas en images/"
+# 3. Validar capturas en images/ (solo las que contienen 'TC' [thunder client] en el nombre)
+CAPTURAS=$(find images/ -type f -iname "*TC*" | wc -l)
+[ "$CAPTURAS" -ge 6 ] || fail "Se requieren al menos 6 capturas con 'TC' en el nombre (actualmente: $CAPTURAS)"
+
+
+# 4️ Si todo pasó:
+echo "--------------------------------------"
+echo "✅ Validación completada con éxito. ¡Todo correcto!"
+echo "--------------------------------------"
