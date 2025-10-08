@@ -289,6 +289,79 @@ Connection: keep-alive
 **204 No Content** → Indica que la solicitud **DELETE** ha tenido éxito y el servidor no tiene contenido para devolver.
 
 ---
+# 🧪 3.2 Pruebas reales
+
+A continuación se muestran las pruebas reales realizadas sobre el servidor `json-server`, utilizando comandos `cURL` para cada operación CRUD. Se incluyen capturas de pantalla de las respuestas obtenidas, junto con una breve explicación.
+
+---
+
+## ➕ CREATE - Crear estudiante
+
+📸 **Respuesta real obtenida:**
+
+![CREATE Response](images\cURL\curl_1.png)
+
+📝 Se envió un POST con los datos del estudiante "Thomas Anderson". El servidor respondió con el objeto creado, incluyendo el campo `id` generado automáticamente.
+
+---
+
+## 📋 READ ALL - Leer todos los estudiantes
+
+📸 **Respuesta real obtenida:**
+
+![READ ALL Response](images\cURL\curl_2.png)
+
+📝 Se realizó una petición GET al endpoint `/students`. El servidor devolvió un array con todos los estudiantes registrados en formato JSON.
+
+---
+
+## 🔍 READ BY ID - Leer estudiante por ID
+
+📸 **Respuesta real obtenida:**
+
+![READ BY ID Not Found](images\cURL\curl_3.png)
+
+📝 Se intentó acceder al estudiante con ID `8`, pero el servidor respondió con `Not Found`, indicando que no existe dicho registro.
+
+![READ BY ID Not Found](images\cURL\curl_3_user.png)
+
+📝 Se modifico al ultimo estudiante estudiante y se le puso con ID `8`, para que dicho usuario indicando tenga un registro existente.
+
+---
+
+## ✏ PATCH - Actualizar parcialmente estudiante
+
+📸 **Respuesta real obtenida:**
+
+![PATCH Student](images\cURL\curl_5.png)
+
+📝 Se actualizó el campo `level` del estudiante con ID `8` mediante una petición PATCH. El servidor devolvió el objeto modificado.
+
+---
+
+## 🔄 UPDATE - Actualizar completamente estudiante
+
+📸 **Respuesta real obtenida:**
+
+![PUT Student](images\cURL\put.png)
+
+📝 Se realizó una petición PUT para actualizar completamente los datos del estudiante con ID `8`. El servidor respondió con el nuevo objeto.
+
+---
+
+## 🗑 DELETE - Eliminar estudiante
+
+📸 **Respuesta real obtenida:**
+
+![DELETE Student](images\cURL\curl_6.png)
+
+📝 Se eliminó el estudiante con ID `8` mediante una petición DELETE. El servidor no devolvió contenido, lo cual es habitual en respuestas con código 204 No Content.
+
+---
+
+## ✅ Conclusión
+
+Todas las operaciones CRUD fueron probadas correctamente utilizando `cURL` y `json-server`. Las respuestas fueron capturadas y documentadas para validar el funcionamiento de la API simulada.
 
 ---
 # 🌩️ Thunder Client
