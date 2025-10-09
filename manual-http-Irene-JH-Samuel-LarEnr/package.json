@@ -1,0 +1,20 @@
+{
+  "name": "manual-http-irene-jh-samuel-larenr",
+  "version": "1.0.0",
+  "description": "Proyecto de CRUD usando http,cURL y herramientas visuales",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "server:up": "json-server --watch src/db/db.json --port 4000",
+    "crud:curl": "src/crud-curl.js",
+    "validate": "bash  scripts/validate.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "samuel||irene",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "json-server": "^1.0.0-beta.3"
+  }
+}

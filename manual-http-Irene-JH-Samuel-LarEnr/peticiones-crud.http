@@ -1,0 +1,66 @@
+### --------- VARIABLES ---------
+###Base de la url
+@baseurl=http://localhost 
+###Puerto en el que se ubica el servidor
+@port=4000
+### apiurl en /students ya que todo el crud se hará sobre esta colección
+@apiUrl={{baseurl}}:{{port}}/students 
+
+### CREATE - Crear estudiante
+POST {{apiUrl}}
+Content-Type: application/json
+
+{
+    "id": "8",
+    "name": "Samuel Lara Esteban",
+    "email": "samuel.lara@email.com",
+    "enrollmentDate": "2024-09-25",
+    "active": true,
+    "level": "intermediate"
+}
+
+### READ- Leer todos los estudiantes
+### No hace falta el Content-Type: application/json debido a que solo pide datos y no envía ningun body
+GET {{apiUrl}}
+
+### READ- Estudiante por id- en este caso el 1
+GET {{apiUrl}}/1
+
+### READ - Filtrar estudiantes activos 
+GET {{apiUrl}}?active=true
+
+### READ - Filtrar por nivel 
+###En este caso lo filtramos por los que tengan nivel = beginner
+GET {{apiUrl}}?level=beginner
+
+### UPDATE - Actualizar estudiante por completo 
+###En este caso el 8, el nombre, email, enrollmentDate y level
+PUT {{apiUrl}}/8
+Content-Type: application/json
+
+{
+    "id": "8",
+  "name": "Samuel F. Enríquez",
+  "email": "samuel.fernan@email.com",
+  "enrollmentDate": "2025-11-02",
+  "active": true,
+  "level": "advanced"
+}
+
+### UPDATE - Actualizar campo específico 
+###En este caso solo el level del estudiante 8
+PATCH {{apiUrl}}/8
+Content-Type: application/json
+
+{
+    "level": "beginner"
+}
+
+### DELETE - Eliminar estudiante
+###En este caso eliminamos el estudiante 8 
+DELETE {{apiUrl}}/8
+
+### -----¿Cómo comprobar?-----
+### Instala la extensión de Visual Studio Code de Rest Client 
+### Click sobre "Send Request" ubicado en la parte superior  del tipo de crud (POST,GET,PUT/PATCH,DELETE)
+### Observaremos que se habre una ventana a la derecha nuestra esta nos dirá la información de la petición enviada
