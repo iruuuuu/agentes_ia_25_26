@@ -375,10 +375,10 @@ Todas las operaciones CRUD fueron probadas correctamente utilizando `cURL` y `js
 -**Esto debería salir en una ventana emergente**
 ![Captura_Explicativa1](./images/capturaExplicativaTC.png)
 **EXPLICACIÓN RÁPIDA:**
--<span style="color:red">Circulo rojo:</span>   **Desplegable** en el que indicaremos la acción a enviar con **send**
--<span style="color:red">Elpse roja:</span>     **Bar** en la que pondremos la **URL**          
+-<span style="color:red">Círculo rojo:</span>   **Desplegable** en el que indicaremos la acción a enviar con **send**
+-<span style="color:red">Elipse roja:</span>     ***Bar*** en la que pondremos la ***URL***          
 -<span style="color:red">Cuadrado rojo:</span>  **Apartados** a rellenar para la acción que fueramos ha hacer y recibir  
--<span style="color:blue">Circulo azul:</span>  **Estado, Tamaño y Tiempo** de la petición enviada
+-<span style="color:blue">Círculo azul:</span>  **Estado, Tamaño y Tiempo** de la petición enviada
 -<span style="color:blue">Cuadrado azul:</span> **Apartados** para ver los resultados de la peticion
 **EJEMPLO RESPUESTA ESPERADA:**
 ![Captura_Explicativa1](./images/capturaExplicativaTC_Respuesta.png)
@@ -454,3 +454,16 @@ Captura de el cambio realizado en la base de datos (borrar usuario id 8): ![dele
 
 ---
 
+# 🌐 Perticiones CRUD HTTP
+
+##  Pruebas del Correcto funcionamiento de las peticiones http usando la extensión rest client 
+
+**Post, creamos un nuevo estudiante**
+<span style="color:green">Salida exitosa</span>
+
+![Create_student_HTTP_result](./images/Post_HTTP_RC.png)
+
+**Delete, Borramos el nuevo estudiante creado anteriormente**
+<span style="color:green">Salida exitosa</span>
+
+![delete_student_HTTP_result](./images/Del_HTTP_RC.png)
