@@ -83,11 +83,11 @@
 ## ✅ Parte 6: Script de validación
 - [x] 6.1 Crear `scripts/validate.sh` **Irene**
 - [x] 6.1 Validar existencia de archivos requeridos **Irene**
-- [ ] 6.1 Validar configuraciones en `package.json`
+- [x] 6.1 Validar configuraciones en `package.json` **Samuel**
 - [x] 6.1 Validar al menos 6 capturas en `images/` **Irene**
-- [ ] 6.1 Mostrar mensaje de éxito o fallo
-- [ ] 6.2 Dar permisos de ejecución al script
-- [ ] 6.2 Probar el script en terminal
+- [x] 6.1 Mostrar mensaje de éxito o fallo **Irene||Samuel**
+- [x] 6.2 Dar permisos de ejecución al script **Irene||Samuel**
+- [x] 6.2 Probar el script en terminal **Irene||Samuel**
 
 ---
 
@@ -104,11 +104,11 @@
 - [x] 8.2 Subir código inicial  **Irene** || **Samuel**
 - [x] 8.3 Crear rama `m1/http-request-response`**Irene**
 - [x] 8.3 Trabajar en esa rama **Irene** || **Samuel**
-- [ ] 8.4 Realizar commits incrementales con mensajes claros
-- [x] 8.5 Crear Pull Request hacia `main`
-- [x] 8.5 Asignar profesor como reviewer
-- [ ] 8.6 Hacer merge tras aprobación
-- [ ] 8.6 Crear y subir tag `M1/http-request-response`
+- [x] 8.4 Realizar commits incrementales con mensajes claros **Irene||Samuel**
+- [x] 8.5 Crear Pull Request hacia `main` **Irene||Samuel**
+- [x] 8.5 Asignar profesor como reviewer **Irene**
+- [x] 8.6 Hacer merge tras aprobación **Irene**
+- [x] 8.6 Crear y subir tag `M1/http-request-response`**Irene**
 
 ---
 ✅ **Progreso general:**  
@@ -117,6 +117,6 @@
 - [x] Parte 3 completada  
 - [x] Parte 4 completada  
 - [x] Parte 5 completada  
-- [ ] Parte 6 completada  
-- [ ] Parte 7 completada  
-- [ ] Parte 8 completada  
+- [x] Parte 6 completada  
+- [x] Parte 7 completada  
+- [x] Parte 8 completada  
