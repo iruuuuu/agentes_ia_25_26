@@ -226,7 +226,7 @@ npm run crud:curl
 
 📸 **Captura de prueba (simulada):**  
 
-![CRUD con Axios](images\cURL\pruebasConsola.png)
+![CRUD con Axios](images/cURL/pruebasConsola.png)
 
 📝 **Documentación de prueba:** Todas las operaciones CRUD se ejecutaron correctamente en el servidor `json-server`. Cada función imprimió en consola la respuesta esperada y los códigos de estado correctos.
 
