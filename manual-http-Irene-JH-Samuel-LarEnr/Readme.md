@@ -1,140 +1,144 @@
-# 📚 Parte 3: Documentación CRUD con cURL
+# 📚 Parte 3: Documentación CRUD con Axios
 
-Esta sección documenta las operaciones CRUD (Crear, Leer, Actualizar, Borrar) para la colección de `students` usando la herramienta de línea de comandos **cURL**.
+Esta documentación explica cómo realizar operaciones **CRUD** sobre la colección `students` usando **Node.js** y **Axios**. 
 
-> **Aviso:**  
-> Los comandos `curl` incluyen el flag `-i` para mostrar las cabeceras HTTP y el código de estado.  
-> La URL base para esta colección es:  
-> `http://localhost:development/students`.
+Cada sección incluye explicación detallada y ejemplos de ejecución.
+
+> ⚡ **Nota:**  
+> La URL base de la API se configura en `.env` o por defecto es: `http://localhost:4000/students`.
 
 ---
 
-## 1. CREATE (POST)
+## 3.1 📖 Sección CRUD
 
-### 🏷 Título descriptivo de la operación
-**Crear un nuevo estudiante.**
+### 1. CREATE (POST)
 
-### 📝 Descripción
-Envía un nuevo objeto JSON al servidor.  
-El servidor crea un nuevo recurso en la colección de `students` y le asigna un ID.
+🏷 **Título:** Crear un nuevo estudiante  
 
-### 🖥 Comando cURL completo y funcional
+📝 **Descripción:** Envía un objeto JSON al servidor para crear un nuevo estudiante en la colección `students`. El servidor devuelve el objeto creado con un ID asignado automáticamente.
 
-```bash
-# Comando cURL para crear un nuevo estudiante (Thomas Anderson)
-curl -i -X POST \
--H "Content-Type: application/json" \
--d '{"name":"Thomas Anderson","email":"neo@matrix.com","enrollmentDate":"2025-01-20","active":true,"level":"advanced"}' \
-http://localhost:development/students
+💻 **Comando equivalente en Node.js (Axios):**
+```js
+await createStudent({
+  id: "8",
+  name: "Thomas Anderson",
+  email: "neo@matrix.com",
+  enrollmentDate: "2025-01-20",
+  active: true,
+  level: "advanced"
+});
 ```
 
-### 🔍 Explicación detallada
+🔍 **Explicación del comando:**
 
-| Parte del comando | Qué hace cada flag (-i, -X, -H, -d) | 🎯 Por qué se usa ese método HTTP | 📨 Qué headers se envían y por qué |
-|--------------------|------------------------------------|----------------------------------|-----------------------------------|
-| `-i` | Incluye las cabeceras de la respuesta HTTP. | `POST` para crear un nuevo recurso. |  |
-| `-X POST` | Especifica el método de la solicitud. |  |  |
-| `-H "Content-Type: application/json"` | Define el tipo de contenido enviado. |  | Indica al servidor que el cuerpo (-d) es JSON. |
-| `-d '...'` | Envía el cuerpo de la solicitud. |  |  |
+| Parte | Qué hace | 🎯 Por qué se usa | 📨 Headers |
+|-------|----------|-----------------|------------|
+| `axios.post(BASE_URL, studentData)` | Envía la solicitud POST con los datos | POST crea un recurso nuevo | `Content-Type: application/json` (automático con axios si es JSON) |
 
-### ✅ Respuesta HTTP real obtenida
-
-```http
-HTTP/1.1 201 Created
-X-Powered-By: Express
-Content-Type: application/json; charset=utf-8
-Content-Length: 172
-Date: Tue, 07 Oct 2025 18:20:44 GMT
-
+✅ **Respuesta simulada:**
+```json
 {
+  "id": "8",
   "name": "Thomas Anderson",
   "email": "neo@matrix.com",
   "enrollmentDate": "2025-01-20",
   "active": true,
-  "level": "advanced",
-  "id": 10
+  "level": "advanced"
 }
 ```
 
-### 📊 Explicación del código de estado HTTP
-**201 Created** → Indica que la solicitud ha tenido éxito y se ha creado un nuevo recurso.  
-Es el código estándar para una operación **POST** exitosa.
+📊 **Código de estado HTTP esperado:** **201 Created** → El recurso se ha creado correctamente.
 
 ---
 
-## 2. READ ALL (GET)
+### 2. READ ALL (GET)
 
-### 🏷 Título descriptivo de la operación
-**Leer todos los estudiantes.**
+🏷 **Título:** Leer todos los estudiantes  
 
-### 📝 Descripción
-Recupera una lista completa con todos los registros de estudiantes de la colección.
+📝 **Descripción:** Recupera la lista completa de estudiantes de la colección `students`.
 
-### 🖥 Comando cURL completo y funcional
-
-```bash
-# Comando cURL para leer todos los estudiantes
-curl -i http://localhost:development/students
+💻 **Comando Axios:**
+```js
+await readAllStudents();
 ```
 
-### 🔍 Explicación detallada
+🔍 **Explicación:**
 
-| Parte del comando | Qué hace cada flag | 🎯 Por qué se usa ese método HTTP | 📨 Qué headers se envían y por qué |
-|--------------------|--------------------|----------------------------------|-----------------------------------|
-| `-i` | Incluye las cabeceras de la respuesta HTTP. | `GET` (por defecto en cURL) se usa para recuperar recursos. | No se envían headers ni cuerpo. |
+| Parte | Qué hace | 🎯 Por qué se usa | 📨 Headers |
+|-------|----------|-----------------|------------|
+| `axios.get(BASE_URL)` | Solicita todos los registros | GET recupera recursos | Ninguno especial, JSON por defecto |
 
-### ✅ Respuesta HTTP real obtenida
-
-```http
-HTTP/1.1 200 OK
-X-Powered-By: Express
-Content-Type: application/json; charset=utf-8
-Content-Length: 1540
-Date: Tue, 07 Oct 2025 18:20:45 GMT
-
+✅ **Respuesta simulada:**
+```json
 [
-  { "id": 1, "name": "...", "email": "..." },
-  { "id": 8, "name": "Samuel F. Enríquez [ACTUALIZADO]", "email": "..." }
-  // ... más estudiantes ...
+  { "id": 1, "name": "Alice", "email": "alice@mail.com" },
+  { "id": "8", "name": "Thomas Anderson", "email": "neo@matrix.com" }
 ]
 ```
 
-### 📊 Explicación del código de estado HTTP
-**200 OK** → La solicitud fue exitosa y devuelve la lista de recursos.  
-Código estándar para una operación **GET** exitosa.
+📊 **Código de estado HTTP esperado:** **200 OK** → Solicitud exitosa.
 
 ---
 
-## 3. READ BY ID (GET)
+### 3. READ BY ID (GET)
 
-### 🏷 Título descriptivo de la operación
-**Leer un estudiante específico por su ID.**
+🏷 **Título:** Leer un estudiante por ID  
 
-### 📝 Descripción
-Recupera el registro de un solo estudiante utilizando su identificador único (`id=8`).
+📝 **Descripción:** Obtiene los datos de un estudiante específico según su `id`.
 
-### 🖥 Comando cURL completo y funcional
-
-```bash
-# Comando cURL para leer el estudiante con ID 8
-curl -i http://localhost:development/students/8
+💻 **Comando Axios:**
+```js
+await readStudentById(8);
 ```
 
-### 🔍 Explicación detallada
+🔍 **Explicación:**
 
-| Parte del comando | Qué hace cada flag | 🎯 Por qué se usa ese método HTTP | 📨 Qué headers se envían y por qué |
-|--------------------|--------------------|----------------------------------|-----------------------------------|
-| `-i` | Incluye las cabeceras de la respuesta HTTP. | `GET` se usa para recuperar un recurso específico. | No se requiere enviar headers ni data. |
+| Parte | Qué hace | 🎯 Por qué se usa | 📨 Headers |
+|-------|----------|-----------------|------------|
+| `axios.get(`${BASE_URL}/${id}`)` | Solicita un recurso concreto | GET obtiene un recurso específico | Ninguno |
 
-### ✅ Respuesta HTTP real obtenida
+✅ **Respuesta simulada:**
+```json
+{
+  "id": "8",
+  "name": "Thomas Anderson",
+  "email": "neo@matrix.com",
+  "enrollmentDate": "2025-01-20",
+  "active": true,
+  "level": "advanced"
+}
+```
 
-```http
-HTTP/1.1 200 OK
-X-Powered-By: Express
-Content-Type: application/json; charset=utf-8
-Content-Length: 172
-Date: Tue, 07 Oct 2025 18:20:46 GMT
+📊 **Código de estado HTTP esperado:** **200 OK** → Recurso encontrado correctamente.
 
+---
+
+### 4. UPDATE COMPLETO (PUT)
+
+🏷 **Título:** Reemplazar un estudiante (Actualización completa)  
+
+📝 **Descripción:** Reemplaza todos los campos de un estudiante existente usando los datos proporcionados.
+
+💻 **Comando Axios:**
+```js
+await updateStudent(8, {
+  id: 8,
+  name: "Samuel F. Enríquez [ACTUALIZADO]",
+  email: "samuel.fernan@email.com",
+  enrollmentDate: "2025-11-02",
+  active: true,
+  level: "advanced"
+});
+```
+
+🔍 **Explicación:**
+
+| Parte | Qué hace | 🎯 Por qué se usa | 📨 Headers |
+|-------|----------|-----------------|------------|
+| `axios.put(`${BASE_URL}/${id}`, updatedStudent)` | Reemplaza todo el registro | PUT reemplaza recurso completo | `Content-Type: application/json` |
+
+✅ **Respuesta simulada:**
+```json
 {
   "id": 8,
   "name": "Samuel F. Enríquez [ACTUALIZADO]",
@@ -145,100 +149,29 @@ Date: Tue, 07 Oct 2025 18:20:46 GMT
 }
 ```
 
-### 📊 Explicación del código de estado HTTP
-**200 OK** → Solicitud exitosa para recuperar un recurso específico.
+📊 **Código de estado HTTP esperado:** **200 OK** → Recurso actualizado correctamente.
 
 ---
 
-## 4. UPDATE COMPLETO (PUT)
+### 5. UPDATE PARCIAL (PATCH)
 
-### 🏷 Título descriptivo de la operación
-**Reemplazar un estudiante por su ID (Actualización Completa).**
+🏷 **Título:** Actualización parcial de estudiante  
 
-### 📝 Descripción
-Reemplaza completamente el recurso de estudiante con `id=8` con los datos proporcionados.  
-El cuerpo de la solicitud debe contener la **representación completa** del recurso.
+📝 **Descripción:** Modifica únicamente los campos indicados sin reemplazar todo el recurso.
 
-### 🖥 Comando cURL completo y funcional
-
-```bash
-# Comando cURL para actualizar COMPLETAMENTE el estudiante con ID 8
-curl -i -X PUT \
--H "Content-Type: application/json" \
--d '{"id":8,"name":"Samuel F. Enríquez [ACTUALIZADO]","email":"samuel.fernan@email.com","enrollmentDate":"2025-11-02","active":true,"level":"advanced"}' \
-http://localhost:development/students/8
+💻 **Comando Axios:**
+```js
+await patchStudent(8, { level: "beginner" });
 ```
 
-### 🔍 Explicación detallada
+🔍 **Explicación:**
 
-| Parte del comando | Qué hace cada flag | 🎯 Por qué se usa ese método HTTP | 📨 Qué headers se envían y por qué |
-|--------------------|--------------------|----------------------------------|-----------------------------------|
-| `-i` | Incluye las cabeceras de la respuesta HTTP. | | |
-| `-X PUT` | Se usa PUT para reemplazar completamente un recurso existente. | | |
-| `-H "Content-Type: application/json"` | Indica que el cuerpo de la solicitud es JSON. | | Necesario para que el servidor entienda el formato de los datos. |
-| `-d '...'` | Cuerpo JSON con la representación completa del recurso. | | |
+| Parte | Qué hace | 🎯 Por qué se usa | 📨 Headers |
+|-------|----------|-----------------|------------|
+| `axios.patch(`${BASE_URL}/${id}`, partialData)` | Actualiza solo algunos campos | PATCH modifica parcialmente | `Content-Type: application/json` |
 
-### ✅ Respuesta HTTP real obtenida
-
-```http
-HTTP/1.1 200 OK
-X-Powered-By: Express
-Content-Type: application/json; charset=utf-8
-Content-Length: 172
-Date: Tue, 07 Oct 2025 18:20:47 GMT
-
-{
-  "id": 8,
-  "name": "Samuel F. Enríquez [ACTUALIZADO]",
-  "email": "samuel.fernan@email.com",
-  "enrollmentDate": "2025-11-02",
-  "active": true,
-  "level": "advanced"
-}
-```
-
-### 📊 Explicación del código de estado HTTP
-**200 OK** → La solicitud **PUT** ha sido procesada con éxito.
-
----
-
-## 5. UPDATE PARCIAL (PATCH)
-
-### 🏷 Título descriptivo de la operación
-**Actualizar parcialmente un estudiante.**
-
-### 📝 Descripción
-Aplica modificaciones parciales al recurso con `id=8`,  
-actualizando solo los campos que se envían en el cuerpo (por ejemplo, `level`).
-
-### 🖥 Comando cURL completo y funcional
-
-```bash
-# Comando cURL para actualizar PARCIALMENTE el estudiante con ID 8
-curl -i -X PATCH \
--H "Content-Type: application/json" \
--d '{"level":"beginner"}' \
-http://localhost:development/students/8
-```
-
-### 🔍 Explicación detallada
-
-| Parte del comando | Qué hace cada flag | 🎯 Por qué se usa ese método HTTP | 📨 Qué headers se envían y por qué |
-|--------------------|--------------------|----------------------------------|-----------------------------------|
-| `-i` | Incluye las cabeceras de la respuesta HTTP. | | |
-| `-X PATCH` | Aplica modificaciones parciales sin reemplazar todo el recurso. | | |
-| `-H "Content-Type: application/json"` | Indica que el cuerpo de la solicitud es JSON. | | Necesario para interpretar correctamente el objeto JSON. |
-| `-d '...'` | Cuerpo JSON con solo los campos a modificar. | | |
-
-### ✅ Respuesta HTTP real obtenida
-
-```http
-HTTP/1.1 200 OK
-X-Powered-By: Express
-Content-Type: application/json; charset=utf-8
-Content-Length: 172
-Date: Tue, 07 Oct 2025 18:20:48 GMT
-
+✅ **Respuesta simulada:**
+```json
 {
   "id": 8,
   "name": "Samuel F. Enríquez [ACTUALIZADO]",
@@ -249,120 +182,61 @@ Date: Tue, 07 Oct 2025 18:20:48 GMT
 }
 ```
 
-### 📊 Explicación del código de estado HTTP
-**200 OK** → La solicitud de actualización parcial (**PATCH**) fue procesada con éxito.
+📊 **Código de estado HTTP esperado:** **200 OK** → Actualización parcial exitosa.
 
 ---
 
-## 6. DELETE (DELETE)
+### 6. DELETE (DELETE)
 
-### 🏷 Título descriptivo de la operación
-**Eliminar un estudiante por su ID.**
+🏷 **Título:** Eliminar un estudiante por ID  
 
-### 📝 Descripción
-Elimina de forma permanente el recurso del estudiante identificado por `id=8`.
+📝 **Descripción:** Elimina un estudiante de la colección `students`.
 
-### 🖥 Comando cURL completo y funcional
+💻 **Comando Axios:**
+```js
+await deleteStudent(8);
+```
 
+🔍 **Explicación:**
+
+| Parte | Qué hace | 🎯 Por qué se usa | 📨 Headers |
+|-------|----------|-----------------|------------|
+| `axios.delete(`${BASE_URL}/${id}`)` | Solicita eliminación de recurso | DELETE elimina recursos | Ninguno |
+
+✅ **Respuesta simulada:**
+```
+{}
+```
+
+📊 **Código de estado HTTP esperado:** **204 No Content** → Recurso eliminado correctamente.
+
+---
+
+## 3.2 🧪 Pruebas reales
+
+🚀 **Levantar el servidor JSON:**  
 ```bash
-# Comando cURL para eliminar el estudiante con ID 8
-curl -i -X DELETE http://localhost:development/students/8
+npm run server:up
 ```
 
-### 🔍 Explicación detallada
-
-| Parte del comando | Qué hace cada flag | 🎯 Por qué se usa ese método HTTP | 📨 Qué headers se envían y por qué |
-|--------------------|--------------------|----------------------------------|-----------------------------------|
-| `-i` | Incluye las cabeceras de la respuesta HTTP. | | |
-| `-X DELETE` | Solicita la eliminación de un recurso específico. | | No requiere enviar data ni headers adicionales. |
-
-### ✅ Respuesta HTTP real obtenida
-
-```http
-HTTP/1.1 204 No Content
-X-Powered-By: Express
-Date: Tue, 07 Oct 2025 18:20:49 GMT
-Connection: keep-alive
+▶ **Ejecutar script CRUD completo:**  
+```bash
+npm run crud:curl
 ```
 
-### 📊 Explicación del código de estado HTTP
-**204 No Content** → Indica que la solicitud **DELETE** ha tenido éxito y el servidor no tiene contenido para devolver.
+📸 **Captura de prueba (simulada):**  
 
----
-# 🧪 3.2 Pruebas reales
+![CRUD con Axios](images/cURL/pruebasConsola.png)
 
-A continuación se muestran las pruebas reales realizadas sobre el servidor `json-server`, utilizando comandos `cURL` para cada operación CRUD. Se incluyen capturas de pantalla de las respuestas obtenidas, junto con una breve explicación.
-
----
-
-## ➕ CREATE - Crear estudiante
-
-📸 **Respuesta real obtenida:**
-
-![CREATE Response](images\cURL\curl_1.png)
-
-📝 Se envió un POST con los datos del estudiante "Thomas Anderson". El servidor respondió con el objeto creado, incluyendo el campo `id` generado automáticamente.
+📝 **Documentación de prueba:** Todas las operaciones CRUD se ejecutaron correctamente en el servidor `json-server`. Cada función imprimió en consola la respuesta esperada y los códigos de estado correctos.
 
 ---
 
-## 📋 READ ALL - Leer todos los estudiantes
+✅ **Conclusión:**  
 
-📸 **Respuesta real obtenida:**
-
-![READ ALL Response](images\cURL\curl_2.png)
-
-📝 Se realizó una petición GET al endpoint `/students`. El servidor devolvió un array con todos los estudiantes registrados en formato JSON.
-
----
-
-## 🔍 READ BY ID - Leer estudiante por ID
-
-📸 **Respuesta real obtenida:**
-
-![READ BY ID Not Found](images\cURL\curl_3.png)
-
-📝 Se intentó acceder al estudiante con ID `8`, pero el servidor respondió con `Not Found`, indicando que no existe dicho registro.
-
-![READ BY ID Not Found](images\cURL\curl_3_user.png)
-
-📝 Se modifico al ultimo estudiante estudiante y se le puso con ID `8`, para que dicho usuario indicando tenga un registro existente.
-
----
-
-## ✏ PATCH - Actualizar parcialmente estudiante
-
-📸 **Respuesta real obtenida:**
-
-![PATCH Student](images\cURL\curl_5.png)
-
-📝 Se actualizó el campo `level` del estudiante con ID `8` mediante una petición PATCH. El servidor devolvió el objeto modificado.
-
----
-
-## 🔄 UPDATE - Actualizar completamente estudiante
-
-📸 **Respuesta real obtenida:**
-
-![PUT Student](images\cURL\put.png)
-
-📝 Se realizó una petición PUT para actualizar completamente los datos del estudiante con ID `8`. El servidor respondió con el nuevo objeto.
-
----
-
-## 🗑 DELETE - Eliminar estudiante
-
-📸 **Respuesta real obtenida:**
-
-![DELETE Student](images\cURL\curl_6.png)
-
-📝 Se eliminó el estudiante con ID `8` mediante una petición DELETE. El servidor no devolvió contenido, lo cual es habitual en respuestas con código 204 No Content.
-
----
-
-## ✅ Conclusión
-
-Todas las operaciones CRUD fueron probadas correctamente utilizando `cURL` y `json-server`. Las respuestas fueron capturadas y documentadas para validar el funcionamiento de la API simulada.
-
+- Las funciones CRUD fueron probadas con Axios y Node.js.  
+- Se pueden modificar los datos de prueba para realizar nuevas pruebas.  
+- Se cumple con los estándares REST y la documentación incluye explicación de cada método HTTP, headers y código de estado.
 ---
 # 🌩️ Thunder Client
 
@@ -375,10 +249,10 @@ Todas las operaciones CRUD fueron probadas correctamente utilizando `cURL` y `js
 -**Esto debería salir en una ventana emergente**
 ![Captura_Explicativa1](./images/capturaExplicativaTC.png)
 **EXPLICACIÓN RÁPIDA:**
--<span style="color:red">Circulo rojo:</span>   **Desplegable** en el que indicaremos la acción a enviar con **send**
--<span style="color:red">Elpse roja:</span>     **Bar** en la que pondremos la **URL**          
+-<span style="color:red">Círculo rojo:</span>   **Desplegable** en el que indicaremos la acción a enviar con **send**
+-<span style="color:red">Elipse roja:</span>     ***Bar*** en la que pondremos la ***URL***          
 -<span style="color:red">Cuadrado rojo:</span>  **Apartados** a rellenar para la acción que fueramos ha hacer y recibir  
--<span style="color:blue">Circulo azul:</span>  **Estado, Tamaño y Tiempo** de la petición enviada
+-<span style="color:blue">Círculo azul:</span>  **Estado, Tamaño y Tiempo** de la petición enviada
 -<span style="color:blue">Cuadrado azul:</span> **Apartados** para ver los resultados de la peticion
 **EJEMPLO RESPUESTA ESPERADA:**
 ![Captura_Explicativa1](./images/capturaExplicativaTC_Respuesta.png)
@@ -454,3 +328,16 @@ Captura de el cambio realizado en la base de datos (borrar usuario id 8): ![dele
 
 ---
 
+# 🌐 Perticiones CRUD HTTP
+
+##  Pruebas del Correcto funcionamiento de las peticiones http usando la extensión rest client 
+
+**Post, creamos un nuevo estudiante**
+<span style="color:green">Salida exitosa</span>
+
+![Create_student_HTTP_result](./images/Post_HTTP_RC.png)
+
+**Delete, Borramos el nuevo estudiante creado anteriormente**
+<span style="color:green">Salida exitosa</span>
+
+![delete_student_HTTP_result](./images/Del_HTTP_RC.png)
