@@ -33,6 +33,13 @@ const BASE_URL = `${API_BASE_URL}:${PORT}/${COLLECTION_NAME}`;
 // ============================================================
 
 // Función auxiliar para ejecutar comandos cURL y devolver una promesa
+/**
+ * Ejecuta un comando cURL en la terminal y devuelve su salida como una promesa.
+ * 
+ * @param {string} command - Comando cURL a ejecutar.
+ * @returns {Promise<string>} - Promesa que se resuelve con la salida estándar (stdout) del comando.
+ * @throws {Error} - Lanza un error si ocurre un fallo en la ejecución o si cURL devuelve un mensaje por stderr.
+ */
 const executeCurl = (command) => {
     return new Promise((resolve, reject) => {
         // Usamos -s (silent) para no mostrar la barra de progreso de cURL
@@ -49,6 +56,11 @@ const executeCurl = (command) => {
     });
 };
 
+/**
+ * 
+ * @param {Object} studentData -Objeto con los datos para crear un nuevo student 
+ * @returns {Object} -Devuelve el estudiante creado 
+ */
 const createStudent = async (studentData = {}) => {
     console.log("\n### 1. CREATE (POST) ###");
     // Escapamos las comillas dobles dentro del JSON para el comando de terminal
@@ -59,34 +71,55 @@ const createStudent = async (studentData = {}) => {
     return createdStudent; // Devolvemos el estudiante creado
 };
 
+/**
+ *  No usa ningún parametro y devuelve por consola todos los estudiantes
+ */
 const readAllStudents = async () => {
     console.log("\n### 2. READ ALL (GET) ###");
     const command = `curl -s -X GET ${BASE_URL}`;
     const response = await executeCurl(command);
     console.log("Respuesta del servidor:", JSON.parse(response));
 };
-
+/**
+ * 
+ * @param {Number} id -Número del id del estudiante a buscar/ Por defecto escoge 1
+ * @returns Devuelve por conosola el estudiate leido
+ */
 const readStudentById = async (id = 1) => {
     console.log(`\n### 3. READ BY ID (GET) [ID: ${id}] ###`);
     const command = `curl -s -X GET ${BASE_URL}/${id}`;
     const response = await executeCurl(command);
     console.log("Respuesta del servidor:", JSON.parse(response));
 };
-
+/**
+ * 
+ * @param {Number} id -Número del id del estudiante a actualizar (put)/ Por defecto escoge 1
+ * @param {Object} studentData -Objeto que contendrá los datos del estudiante actualizados/ Por defecto escoge {}
+ * @returns Devuelve por conosola el estudiate actualizado
+ */
 const updateStudent = async (id = 1, studentData = {}) => {
     console.log(`\n### 4. UPDATE (PUT) [ID: ${id}] ###`);
     const command = `curl -s -X PUT ${BASE_URL}/${id} -H "Content-Type: application/json" -d "${JSON.stringify(studentData).replace(/"/g, '\\"')}"`;
     const response = await executeCurl(command);
     console.log("Respuesta del servidor:", JSON.parse(response));
 };
-
+/**
+ * 
+ * @param {Number} id -Número del id del estudiante a actualizar (patch)/ Por defecto escoge 1
+ * @param {Object} partialData -Objeto que contendrá el dato del estudiante a actualizar/ Por defecto escoge {}
+ * @returns Devuelve por conosola el estudiate actualizado
+ */
 const patchStudent = async (id = 1, partialData = {}) => {
     console.log(`\n### 5. UPDATE (PATCH) [ID: ${id}] ###`);
     const command = `curl -s -X PATCH ${BASE_URL}/${id} -H "Content-Type: application/json" -d "${JSON.stringify(partialData).replace(/"/g, '\\"')}"`;
     const response = await executeCurl(command);
     console.log("Respuesta del servidor:", JSON.parse(response));
 };
-
+/**
+ * 
+ * @param {Number} id -Número del id del estudiante a borrar/ Por defecto escoge 1
+ * @returns Devuelve por conosola el estudiate borrado
+ */
 const deleteStudent = async (id = 1) => {
     console.log(`\n### 6. DELETE [ID: ${id}] ###`);
     const command = `curl -s -X DELETE ${BASE_URL}/${id}`;

@@ -295,7 +295,7 @@ Connection: keep-alive
 A continuación se muestran las pruebas reales realizadas sobre el servidor `json-server`, utilizando comandos `cURL` para cada operación CRUD.
 
 ---
-![Captura_Pruebas](images\cURL\pruebasConsola.png)
+![Captura_Pruebas](images/cURL/pruebasConsola.png)
 ---
 
 ## ✅ Conclusión
@@ -392,3 +392,17 @@ Captura del header del resultado del delete: ![delete_student_header_response](.
 Captura de el cambio realizado en la base de datos (borrar usuario id 8): ![delete_student_bd](./images/Del_DB_TC.png)
 
 ---
+
+# 🌐 Perticiones CRUD HTTP
+
+##  Pruebas del Correcto funcionamiento de las peticiones http usando la extensión rest client 
+
+**Post, creamos un nuevo estudiante**
+<span style="color:green">Salida exitosa</span>
+
+![Create_student_HTTP_result](./images/Post_HTTP_RC.png)
+
+**Delete, Borramos el nuevo estudiante creado anteriormente**
+<span style="color:green">Salida exitosa</span>
+
+![delete_student_HTTP_result](./images/Del_HTTP_RC.png)
