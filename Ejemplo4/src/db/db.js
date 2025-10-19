@@ -11,7 +11,7 @@ const dataPokemon = [
         "defense": 49,
         "special_attack": 65,
         "special_defense": 65,
-      "speed": 45
+        "speed": 45
     },
     "habilidades": ["overgrow", "chlorophyll"],
     "peso_kg": 6.9,
