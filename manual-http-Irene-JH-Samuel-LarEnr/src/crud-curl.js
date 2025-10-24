@@ -1,104 +1,144 @@
-// Importar y configurar dotenv
+// ============================================================
+// IMPORTACIÓN DE LIBRERÍAS
+// ============================================================
 import dotenv from 'dotenv';
+import { exec } from 'child_process';
+
+// Cargamos las variables que haya dentro del archivo .env
+// Esto permite usar process.env.VARIABLE en el resto del código
 dotenv.config();
 
-// ==================== PASO 2.1 - Configuración de la URL base =====================
 
+
+// ============================================================
+// CONFIGURACIÓN BÁSICA
+// ============================================================
 
 // Carga las variables de entorno o usa valores por defecto (ej. 4000)
-const PORT=3000;
+const PORT = parseInt(process.env.PORT, 10) || 4000;
+// Dirección base de la API. Si no hay API_BASE_URL en .env, usa localhost
 const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost';
+
+// Nombre de la colección o tabla dentro de la API (en este caso “students”)
 const COLLECTION_NAME = 'students';
 
-
-
-
-// URL base completa para la colección de estudiantes (ej. http://localhost:4000/students)
+// Armamos la URL base completa, por ejemplo:
+// http://localhost:4000/students
 const BASE_URL = `${API_BASE_URL}:${PORT}/${COLLECTION_NAME}`;
 
 
-// ===================== PASO 2.2 - IMPLEMENTACIÓN DE FUNCIONES CRUD ====================
 
+// ============================================================
+// FUNCIONES CRUD
+// ============================================================
+
+// Función auxiliar para ejecutar comandos cURL y devolver una promesa
 /**
- * Genera el comando cURL para crear un nuevo estudiante (POST).
+ * Ejecuta un comando cURL en la terminal y devuelve su salida como una promesa.
+ * 
+ * @param {string} command - Comando cURL a ejecutar.
+ * @returns {Promise<string>} - Promesa que se resuelve con la salida estándar (stdout) del comando.
+ * @throws {Error} - Lanza un error si ocurre un fallo en la ejecución o si cURL devuelve un mensaje por stderr.
  */
-const createStudent = (studentData) => {
-    // Convierte y envuelve en comillas simples en una sola línea.
-    const command = `curl -X POST -H "Content-Type: application/json" 
-    -d '${JSON.stringify(studentData)}' ${BASE_URL}`;
-    console.log(`\n### 1. CREATE (POST) ###\n${command}`);
+const executeCurl = (command) => {
+    return new Promise((resolve, reject) => {
+        // Usamos -s (silent) para no mostrar la barra de progreso de cURL
+        exec(command, (error, stdout, stderr) => {
+            if (error) {
+                return reject(error);
+            }
+            if (stderr) {
+                // Algunos errores de cURL (como 404) salen por stderr
+                return reject(new Error(stderr));
+            }
+            resolve(stdout);
+        });
+    });
 };
 
-
 /**
- * Genera el comando cURL para leer todos los estudiantes (GET).
+ * 
+ * @param {Object} studentData -Objeto con los datos para crear un nuevo student 
+ * @returns {Object} -Devuelve el estudiante creado 
  */
-const readAllStudents = () => {
-    const command = `curl ${BASE_URL}`; 
-    console.log(`\n### 2. READ ALL (GET) ###\n${command}`);
+const createStudent = async (studentData = {}) => {
+    console.log("\n### 1. CREATE (POST) ###");
+    // Escapamos las comillas dobles dentro del JSON para el comando de terminal
+    const command = `curl -s -X POST ${BASE_URL} -H "Content-Type: application/json" -d "${JSON.stringify(studentData).replace(/"/g, '\\"')}"`;
+    const response = await executeCurl(command);
+    const createdStudent = JSON.parse(response);
+    console.log("Respuesta del servidor:", createdStudent);
+    return createdStudent; // Devolvemos el estudiante creado
 };
 
-
 /**
- * Genera el comando cURL para leer un estudiante específico por su ID (GET).
+ *  No usa ningún parametro y devuelve por consola todos los estudiantes
  */
-const readStudentById = (id) => {
-    const url = `${BASE_URL}/${id}`;
-    const command = `curl ${url}`;
-    console.log(`\n### 3. READ BY ID (GET) ###\n${command}`);
+const readAllStudents = async () => {
+    console.log("\n### 2. READ ALL (GET) ###");
+    const command = `curl -s -X GET ${BASE_URL}`;
+    const response = await executeCurl(command);
+    console.log("Respuesta del servidor:", JSON.parse(response));
+};
+/**
+ * 
+ * @param {Number} id -Número del id del estudiante a buscar/ Por defecto escoge 1
+ * @returns Devuelve por conosola el estudiate leido
+ */
+const readStudentById = async (id = 1) => {
+    console.log(`\n### 3. READ BY ID (GET) [ID: ${id}] ###`);
+    const command = `curl -s -X GET ${BASE_URL}/${id}`;
+    const response = await executeCurl(command);
+    console.log("Respuesta del servidor:", JSON.parse(response));
+};
+/**
+ * 
+ * @param {Number} id -Número del id del estudiante a actualizar (put)/ Por defecto escoge 1
+ * @param {Object} studentData -Objeto que contendrá los datos del estudiante actualizados/ Por defecto escoge {}
+ * @returns Devuelve por conosola el estudiate actualizado
+ */
+const updateStudent = async (id = 1, studentData = {}) => {
+    console.log(`\n### 4. UPDATE (PUT) [ID: ${id}] ###`);
+    const command = `curl -s -X PUT ${BASE_URL}/${id} -H "Content-Type: application/json" -d "${JSON.stringify(studentData).replace(/"/g, '\\"')}"`;
+    const response = await executeCurl(command);
+    console.log("Respuesta del servidor:", JSON.parse(response));
+};
+/**
+ * 
+ * @param {Number} id -Número del id del estudiante a actualizar (patch)/ Por defecto escoge 1
+ * @param {Object} partialData -Objeto que contendrá el dato del estudiante a actualizar/ Por defecto escoge {}
+ * @returns Devuelve por conosola el estudiate actualizado
+ */
+const patchStudent = async (id = 1, partialData = {}) => {
+    console.log(`\n### 5. UPDATE (PATCH) [ID: ${id}] ###`);
+    const command = `curl -s -X PATCH ${BASE_URL}/${id} -H "Content-Type: application/json" -d "${JSON.stringify(partialData).replace(/"/g, '\\"')}"`;
+    const response = await executeCurl(command);
+    console.log("Respuesta del servidor:", JSON.parse(response));
+};
+/**
+ * 
+ * @param {Number} id -Número del id del estudiante a borrar/ Por defecto escoge 1
+ * @returns Devuelve por conosola el estudiate borrado
+ */
+const deleteStudent = async (id = 1) => {
+    console.log(`\n### 6. DELETE [ID: ${id}] ###`);
+    const command = `curl -s -X DELETE ${BASE_URL}/${id}`;
+    const response = await executeCurl(command);
+    // DELETE exitoso a menudo devuelve un cuerpo vacío
+    if (response.trim() === '{}' || response.trim() === '') {
+        console.log(`Respuesta del servidor: Estudiante con ID ${id} eliminado correctamente.`);
+    } else {
+        console.log("Respuesta del servidor:", JSON.parse(response));
+    }
 };
 
+// ============================================================
+// DATOS DE PRUEBA
+// ============================================================
+// Estos datos se usan para probar las funciones CRUD.
 
-/**
- * Genera el comando cURL para reemplazar (PUT) un estudiante por su ID.
- */
-const updateStudent = (id, studentData) => {
-    const url = `${BASE_URL}/${id}`;
-    // Convierte y envuelve en comillas simples en una sola línea.
-    const command = `curl -X PUT 
-    -H "Content-Type: application/json" 
-    -d '${JSON.stringify(studentData)}' ${url}`;
-    console.log(`\n### 4. UPDATE COMPLETO (PUT) ###\n${command}`);
-};
-
-
-/**
- * Genera el comando cURL para actualizar parcialmente (PATCH) un estudiante.
- */
-const patchStudent = (id, partialData) => {
-    const url = `${BASE_URL}/${id}`;
-    // Convierte y envuelve en comillas simples en una sola línea.
-    const command = `curl -X PATCH 
-    -H "Content-Type: application/json" 
-    -d '${JSON.stringify(partialData)}' ${url}`;
-
-    console.log(`\n### 5. UPDATE PARCIAL (PATCH) ###\n${command}`);
-};
-
-
-/**
- * Genera el comando cURL para eliminar un estudiante por su ID (DELETE).
- */
-const deleteStudent = (id) => {
-    const url = `${BASE_URL}/${id}`;
-    const command = `curl -X DELETE ${url}`;
-    console.log(`\n### 6. DELETE (DELETE) ###\n${command}`);
-};
-
-
-// ================================== PASO 2.3 - EJECUCIÓN DEL SCRIPT ==========================
-// Para ejecutarlo --> node src/crud-curl.js
-
-console.log('====================================================');
-console.log('GENERACIÓN DE COMANDOS cURL PARA OPERACIONES CRUD');
-console.log('====================================================');
-
-// --- Datos de Ejemplo (Correctos para tu db.json) ---
-// Usaremos el ID 8 (Samuel Fernandez) para las operaciones de modificacion.
-const STUDENT_ID_TO_OPERATE = 8; 
-
-// Datos para la operación CREATE (POST)
-const dataNewStudent = {
+// Datos para crear un nuevo estudiante. El servidor asignará el 'id'.
+const newStudent = {
     name: "Thomas Anderson",
     email: "neo@matrix.com",
     enrollmentDate: "2025-01-20",
@@ -106,29 +146,61 @@ const dataNewStudent = {
     level: "advanced"
 };
 
-// Datos para la operación UPDATE COMPLETO (PUT)
-const dataUpdatedStudent = {
-    id: 8, 
-    name: "Samuel F. Enríquez [ACTUALIZADO]", // Campo modificado
+// Datos para actualización completa (PUT)
+const updatedStudent = {
+    name: "Samuel F. Enriquez [ACTUALIZADO]",
     email: "samuel.fernan@email.com",
     enrollmentDate: "2025-11-02",
-    active: true, // Campo modificado
+    active: true,
     level: "advanced"
 };
 
-// Datos para la operación UPDATE PARCIAL (PATCH)
-const dataPartialUpdate = {
-    level: "beginner" // Solo envía el campo a modificar
-};
+// Datos para actualización parcial (PATCH)
+const partialUpdate = { level: "beginner" };
 
-// --- Ejecución de las Funciones en Orden ---
-createStudent(dataNewStudent);
-readAllStudents();
-readStudentById(STUDENT_ID_TO_OPERATE);
-updateStudent(STUDENT_ID_TO_OPERATE, dataUpdatedStudent);
-patchStudent(STUDENT_ID_TO_OPERATE, dataPartialUpdate);
-deleteStudent(STUDENT_ID_TO_OPERATE);
 
-console.log('\n====================================================');
-console.log('FINALIZADO. Copia y ejecuta los comandos en tu terminal.');
-console.log('====================================================\n');
+// ============================================================
+// EJECUCIÓN AUTOMÁTICA
+// ============================================================
+// Esta función se ejecuta una sola vez al correr el archivo con Node.
+// Usa async/await para asegurar que las operaciones se ejecutan en orden.
+
+async function runCRUD() {
+    console.log("===============================================");
+    console.log("🚀 EJECUTANDO PRUEBAS CRUD CON cURL");
+    console.log("===============================================");
+
+    try {
+        // 1️⃣ Crear un nuevo estudiante y capturar su ID
+        const createdStudent = await createStudent(newStudent);
+        const studentId = createdStudent.id;
+
+        if (!studentId) {
+            throw new Error("No se pudo obtener el ID del estudiante creado.");
+        }
+
+        // 2️⃣ Leer todos los estudiantes
+        await readAllStudents();
+
+        // 3️⃣ Leer un estudiante específico por su ID
+        await readStudentById(studentId);
+
+        // 4️⃣ Actualizar completamente un estudiante (PUT)
+        await updateStudent(studentId, { ...updatedStudent, id: studentId });
+
+        // 5️⃣ Actualizar parcialmente un estudiante (PATCH)
+        await patchStudent(studentId, partialUpdate);
+
+        // 6️⃣ Eliminar un estudiante
+        await deleteStudent(studentId);
+
+        console.log("\n===============================================");
+        console.log("✅ TODAS LAS OPERACIONES CRUD FINALIZADAS CON ÉXITO");
+        console.log("===============================================");
+    } catch (error) {
+        console.error("\n❌ OCURRIÓ UN ERROR DURANTE LA EJECUCIÓN:", error.message);
+    }
+}
+
+// Llamamos a la función principal para que se ejecute automáticamente
+runCRUD();

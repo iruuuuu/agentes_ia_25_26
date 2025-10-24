@@ -2,12 +2,7 @@
 
 Esta sección documenta las operaciones CRUD (Crear, Leer, Actualizar, Borrar) para la colección de `students` usando la herramienta de línea de comandos **cURL**.
 
-> **Aviso:**  
-> Los comandos `curl` incluyen el flag `-i` para mostrar las cabeceras HTTP y el código de estado.  
-> La URL base para esta colección es:  
-> `http://localhost:development/students`.
 
----
 
 ## 1. CREATE (POST)
 
@@ -25,17 +20,17 @@ El servidor crea un nuevo recurso en la colección de `students` y le asigna un 
 curl -i -X POST \
 -H "Content-Type: application/json" \
 -d '{"name":"Thomas Anderson","email":"neo@matrix.com","enrollmentDate":"2025-01-20","active":true,"level":"advanced"}' \
-http://localhost:development/students
+http://localhost:4000/students
 ```
 
 ### 🔍 Explicación detallada
 
-| Parte del comando | Qué hace cada flag (-i, -X, -H, -d) | 🎯 Por qué se usa ese método HTTP | 📨 Qué headers se envían y por qué |
-|--------------------|------------------------------------|----------------------------------|-----------------------------------|
-| `-i` | Incluye las cabeceras de la respuesta HTTP. | `POST` para crear un nuevo recurso. |  |
-| `-X POST` | Especifica el método de la solicitud. |  |  |
-| `-H "Content-Type: application/json"` | Define el tipo de contenido enviado. |  | Indica al servidor que el cuerpo (-d) es JSON. |
-| `-d '...'` | Envía el cuerpo de la solicitud. |  |  |
+| Parte del comando | Qué hace cada flag | 🎯 Por qué se usa ese método HTTP | 📨 Qué headers y cuerpo se envían y por qué |
+|--------------------|------------------------------------------------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| `-i` | Incluye las cabeceras de la respuesta HTTP en la salida. | (No aplica) | (No aplica) |
+| `-X POST` | Especifica que el método de la solicitud es `POST`. | Se usa `POST` para solicitar al servidor que cree un nuevo recurso en la colección. | (No aplica) |
+| `-H "..."` | Envía una cabecera HTTP. | (No aplica) | Se envía `Content-Type: application/json` para indicar al servidor que el cuerpo de la solicitud está en formato JSON. |
+| `-d '...'` | Define el cuerpo (data) de la solicitud. | (No aplica) | Contiene el objeto JSON con los datos del nuevo estudiante que se va a crear. |
 
 ### ✅ Respuesta HTTP real obtenida
 
@@ -74,14 +69,17 @@ Recupera una lista completa con todos los registros de estudiantes de la colecci
 
 ```bash
 # Comando cURL para leer todos los estudiantes
-curl -i http://localhost:development/students
+curl -i http://localhost:4000/students
 ```
 
 ### 🔍 Explicación detallada
 
+> **Nota:** El método `GET` no se escribe en el comando porque es la acción por defecto de cURL. Si no se especifica `-X`, cURL siempre intentará hacer una petición `GET`.
+
 | Parte del comando | Qué hace cada flag | 🎯 Por qué se usa ese método HTTP | 📨 Qué headers se envían y por qué |
 |--------------------|--------------------|----------------------------------|-----------------------------------|
-| `-i` | Incluye las cabeceras de la respuesta HTTP. | `GET` (por defecto en cURL) se usa para recuperar recursos. | No se envían headers ni cuerpo. |
+| `(ninguno)` | No se especifica `-X` porque `GET` es el método por defecto en cURL. | `GET` se usa para solicitar y recuperar datos de un recurso. | No se necesita enviar headers ni cuerpo para esta petición. |
+| `-i` | Incluye las cabeceras de la respuesta HTTP en la salida. | | |
 
 ### ✅ Respuesta HTTP real obtenida
 
@@ -122,9 +120,12 @@ curl -i http://localhost:development/students/8
 
 ### 🔍 Explicación detallada
 
+> **Nota:** El método `GET` no se escribe en el comando porque es la acción por defecto de cURL. Si no se especifica `-X`, cURL siempre intentará hacer una petición `GET`.
+
 | Parte del comando | Qué hace cada flag | 🎯 Por qué se usa ese método HTTP | 📨 Qué headers se envían y por qué |
 |--------------------|--------------------|----------------------------------|-----------------------------------|
-| `-i` | Incluye las cabeceras de la respuesta HTTP. | `GET` se usa para recuperar un recurso específico. | No se requiere enviar headers ni data. |
+| `(ninguno)` | No se especifica `-X` porque `GET` es el método por defecto en cURL. | `GET` se usa para recuperar un recurso específico. | No se requiere enviar headers ni cuerpo para esta petición. |
+| `-i` | Incluye las cabeceras de la respuesta HTTP en la salida. | | |
 
 ### ✅ Respuesta HTTP real obtenida
 
@@ -171,12 +172,12 @@ http://localhost:development/students/8
 
 ### 🔍 Explicación detallada
 
-| Parte del comando | Qué hace cada flag | 🎯 Por qué se usa ese método HTTP | 📨 Qué headers se envían y por qué |
-|--------------------|--------------------|----------------------------------|-----------------------------------|
-| `-i` | Incluye las cabeceras de la respuesta HTTP. | | |
-| `-X PUT` | Se usa PUT para reemplazar completamente un recurso existente. | | |
-| `-H "Content-Type: application/json"` | Indica que el cuerpo de la solicitud es JSON. | | Necesario para que el servidor entienda el formato de los datos. |
-| `-d '...'` | Cuerpo JSON con la representación completa del recurso. | | |
+| Parte del comando | Qué hace cada flag | 🎯 Por qué se usa ese método HTTP | 📨 Qué headers y cuerpo se envían y por qué |
+|--------------------|------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| `-i` | Incluye las cabeceras de la respuesta HTTP en la salida. | (No aplica) | (No aplica) |
+| `-X PUT` | Especifica que el método de la solicitud es `PUT`. | Se usa `PUT` para reemplazar completamente un recurso existente. Es idempotente: la misma petición repetida produce el mismo estado final. | (No aplica) |
+| `-H "..."` | Envía una cabecera HTTP. | (No aplica) | Se envía `Content-Type: application/json` para indicar al servidor que el cuerpo de la solicitud está en formato JSON. |
+| `-d '...'` | Define el cuerpo (data) de la solicitud. | (No aplica) | Contiene el objeto JSON con la **representación completa** del estudiante que va a reemplazar al existente. |
 
 ### ✅ Respuesta HTTP real obtenida
 
@@ -223,12 +224,12 @@ http://localhost:development/students/8
 
 ### 🔍 Explicación detallada
 
-| Parte del comando | Qué hace cada flag | 🎯 Por qué se usa ese método HTTP | 📨 Qué headers se envían y por qué |
-|--------------------|--------------------|----------------------------------|-----------------------------------|
-| `-i` | Incluye las cabeceras de la respuesta HTTP. | | |
-| `-X PATCH` | Aplica modificaciones parciales sin reemplazar todo el recurso. | | |
-| `-H "Content-Type: application/json"` | Indica que el cuerpo de la solicitud es JSON. | | Necesario para interpretar correctamente el objeto JSON. |
-| `-d '...'` | Cuerpo JSON con solo los campos a modificar. | | |
+| Parte del comando | Qué hace cada flag | 🎯 Por qué se usa ese método HTTP | 📨 Qué headers y cuerpo se envían y por qué |
+|--------------------|------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| `-i` | Incluye las cabeceras de la respuesta HTTP en la salida. | (No aplica) | (No aplica) |
+| `-X PATCH` | Especifica que el método de la solicitud es `PATCH`. | Se usa `PATCH` para aplicar modificaciones parciales a un recurso. A diferencia de `PUT`, solo se envían los campos que se desean cambiar. | (No aplica) |
+| `-H "..."` | Envía una cabecera HTTP. | (No aplica) | Se envía `Content-Type: application/json` para indicar al servidor que el cuerpo de la solicitud está en formato JSON. |
+| `-d '...'` | Define el cuerpo (data) de la solicitud. | (No aplica) | Contiene el objeto JSON con **solo los campos** del estudiante que se van a modificar. |
 
 ### ✅ Respuesta HTTP real obtenida
 
@@ -271,10 +272,10 @@ curl -i -X DELETE http://localhost:development/students/8
 
 ### 🔍 Explicación detallada
 
-| Parte del comando | Qué hace cada flag | 🎯 Por qué se usa ese método HTTP | 📨 Qué headers se envían y por qué |
-|--------------------|--------------------|----------------------------------|-----------------------------------|
-| `-i` | Incluye las cabeceras de la respuesta HTTP. | | |
-| `-X DELETE` | Solicita la eliminación de un recurso específico. | | No requiere enviar data ni headers adicionales. |
+| Parte del comando | Qué hace cada flag | 🎯 Por qué se usa ese método HTTP | 📨 Qué headers y cuerpo se envían y por qué |
+|--------------------|------------------------------------------------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| `-i` | Incluye las cabeceras de la respuesta HTTP en la salida. | (No aplica) | (No aplica) |
+| `-X DELETE` | Especifica que el método de la solicitud es `DELETE`. | Se usa `DELETE` para solicitar la eliminación de un recurso específico en el servidor. | Esta operación no requiere enviar cabeceras adicionales (aparte de las que añade cURL por defecto) ni un cuerpo de solicitud. |
 
 ### ✅ Respuesta HTTP real obtenida
 
@@ -291,72 +292,10 @@ Connection: keep-alive
 ---
 # 🧪 3.2 Pruebas reales
 
-A continuación se muestran las pruebas reales realizadas sobre el servidor `json-server`, utilizando comandos `cURL` para cada operación CRUD. Se incluyen capturas de pantalla de las respuestas obtenidas, junto con una breve explicación.
+A continuación se muestran las pruebas reales realizadas sobre el servidor `json-server`, utilizando comandos `cURL` para cada operación CRUD.
 
 ---
-
-## ➕ CREATE - Crear estudiante
-
-📸 **Respuesta real obtenida:**
-
-![CREATE Response](images\cURL\curl_1.png)
-
-📝 Se envió un POST con los datos del estudiante "Thomas Anderson". El servidor respondió con el objeto creado, incluyendo el campo `id` generado automáticamente.
-
----
-
-## 📋 READ ALL - Leer todos los estudiantes
-
-📸 **Respuesta real obtenida:**
-
-![READ ALL Response](images\cURL\curl_2.png)
-
-📝 Se realizó una petición GET al endpoint `/students`. El servidor devolvió un array con todos los estudiantes registrados en formato JSON.
-
----
-
-## 🔍 READ BY ID - Leer estudiante por ID
-
-📸 **Respuesta real obtenida:**
-
-![READ BY ID Not Found](images\cURL\curl_3.png)
-
-📝 Se intentó acceder al estudiante con ID `8`, pero el servidor respondió con `Not Found`, indicando que no existe dicho registro.
-
-![READ BY ID Not Found](images\cURL\curl_3_user.png)
-
-📝 Se modifico al ultimo estudiante estudiante y se le puso con ID `8`, para que dicho usuario indicando tenga un registro existente.
-
----
-
-## ✏ PATCH - Actualizar parcialmente estudiante
-
-📸 **Respuesta real obtenida:**
-
-![PATCH Student](images\cURL\curl_5.png)
-
-📝 Se actualizó el campo `level` del estudiante con ID `8` mediante una petición PATCH. El servidor devolvió el objeto modificado.
-
----
-
-## 🔄 UPDATE - Actualizar completamente estudiante
-
-📸 **Respuesta real obtenida:**
-
-![PUT Student](images\cURL\put.png)
-
-📝 Se realizó una petición PUT para actualizar completamente los datos del estudiante con ID `8`. El servidor respondió con el nuevo objeto.
-
----
-
-## 🗑 DELETE - Eliminar estudiante
-
-📸 **Respuesta real obtenida:**
-
-![DELETE Student](images\cURL\curl_6.png)
-
-📝 Se eliminó el estudiante con ID `8` mediante una petición DELETE. El servidor no devolvió contenido, lo cual es habitual en respuestas con código 204 No Content.
-
+![Captura_Pruebas](images/cURL/pruebasConsola.png)
 ---
 
 ## ✅ Conclusión
@@ -454,3 +393,16 @@ Captura de el cambio realizado en la base de datos (borrar usuario id 8): ![dele
 
 ---
 
+# 🌐 Perticiones CRUD HTTP
+
+##  Pruebas del Correcto funcionamiento de las peticiones http usando la extensión rest client 
+
+**Post, creamos un nuevo estudiante**
+<span style="color:green">Salida exitosa</span>
+
+![Create_student_HTTP_result](./images/Post_HTTP_RC.png)
+
+**Delete, Borramos el nuevo estudiante creado anteriormente**
+<span style="color:green">Salida exitosa</span>
+
+![delete_student_HTTP_result](./images/Del_HTTP_RC.png)
