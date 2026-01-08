@@ -16,7 +16,7 @@ const HOST=process.env.HOST  || "0.0.0.0"
 const NODE_ENV=process.env.NODE_ENV  || "development"
 const SERVER_URL=process.env.SERVER_URL  || "http://localhost:3002"
 const AI_API_URL=process.env.AI_API_URL  || "http://localhost:11434"
-const AI_MODEL=process.env.AI_MODEL  || "phi3:miniconst "
+const AI_MODEL=process.env.AI_MODEL  || "phi3:mini"
 
 //Paso midleware a mi aplicacion
 
